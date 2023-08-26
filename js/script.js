@@ -40,106 +40,101 @@ $(document).ready(function () {
     });
     cantidad = parseFloat($("input#cantidad").val());
     let index = carritoEntradas.length - 1;
-    if(cantidad > 0){
-    let precio = carritoEntradas[index].precio;
+    if (cantidad > 0) {
+      let precio = carritoEntradas[index].precio;
 
+      $("#carrito").append(
+        "<div class='col-10 row border rounded-2 mb-2 mx-0'><p class='col-9 py-2 m-0'>" +
+          carritoEntradas[index].lugar +
+          "</p><p class='col-3 py-2 m-0'>" +
+          cantidad +
+          "</p></div><div class='col-2'><p class='m-0 py-2'><i class='fa-solid fa-xmark fs-4'></i></p></div>"
+      );
 
-    $("#carrito").append(
-      "<div class='col-10 row border rounded-2 mb-2 mx-0'><p class='col-9 py-2 m-0'>" +
-        carritoEntradas[index].lugar +
-        "</p><p class='col-3 py-2 m-0'>" +
-        cantidad +
-        "</p></div><div class='col-2'><p class='m-0 py-2'><i class='fa-solid fa-xmark fs-4'></i></p></div>"
-    );
+      total += cantidad * precio;
 
-    total += cantidad * precio;
-
-    $("#total").text(total);
+      $("#total").text(total);
     } else {
       $("input#cantidad").addClass("border-danger border-1");
     }
 
     /*Manejadores para el botón close*/
 
-    $("body").on("mouseenter", ".fa-xmark", function(e){
+    $("body").on("mouseenter", ".fa-xmark", function (e) {
       $(e.target).addClass("text-secondary");
     });
-    $("body").on("mouseleave", ".fa-xmark", function(e){
+    $("body").on("mouseleave", ".fa-xmark", function (e) {
       $(e.target).removeClass("text-secondary");
     });
 
-    $("#carrito i").on("click", (function (e){
+    $("#carrito i").on("click", function (e) {
       console.log(e.target);
       let sala = $(e.target)
-      .parentsUntil("#carrito")
-      .prev()
-      .children()
-      .eq(0)
-      .text();
-    let cantidad = parseInt(
-      $(e.target).parentsUntil("#carrito").prev().children().eq(1).text()
-    );
+        .parentsUntil("#carrito")
+        .prev()
+        .children()
+        .eq(0)
+        .text();
+      let cantidad = parseInt(
+        $(e.target).parentsUntil("#carrito").prev().children().eq(1).text()
+      );
 
-    $(e.target).parentsUntil("#carrito").hide();
-    $(e.target).parentsUntil("#carrito").prev().hide();
-    let precioTotal = parseInt($("span#total").text());
+      $(e.target).parentsUntil("#carrito").hide();
+      $(e.target).parentsUntil("#carrito").prev().hide();
+      let precioTotal = parseInt($("span#total").text());
 
-    entradas.forEach((item) => {
-      if (item.lugar === sala) {
-        precioTotal = precioTotal - item.precio * cantidad;
-      }
+      entradas.forEach((item) => {
+        if (item.lugar === sala) {
+          precioTotal = precioTotal - item.precio * cantidad;
+        }
+      });
+      $("#total").text(precioTotal);
+      total = precioTotal;
     });
-    $("#total").text(precioTotal);
-    total = precioTotal;
-    }));
-  
   }); /*fin función addCarrito*/
 
+  $("#comprar").click(function (e) {
+    if ($("#carrito").children().is("div")) {
+      console.log("compra");
+      $("#carrito").empty();
+      $("#total").empty();
+      $("#carrito").append(
+        "<p><h4 class='fw-bold border border-2 rounded-2 border-danger text-center p-2'>Compra realizada con éxito</h4></p>"
+      );
+    } else {
+      console.log("no compra");
+    }
+  });
 
-$("#comprar").click(function (e) {
-  if ($("#carrito").children().is("div")) {
-    console.log("compra");
+  $("#btn-vaciar").click(function (e) {
+    console.log(e);
     $("#carrito").empty();
     $("#total").empty();
-    $("#carrito").append(
-      "<p><h4 class='fw-bold border border-2 rounded-2 border-danger text-center p-2'>Compra realizada con éxito</h4></p>"
-    );
-  } else {
-    console.log("no compra");
-  }
-});
-
-$("#btn-vaciar").click(function (e) {
-  console.log(e);
-  $("#carrito").empty();
-  $("#total").empty();
-});
+  });
 
   /*****************************************/
   /*************VENTA DISCOS****************/
   /*****************************************/
 
-const discos = [
-  {
-    id: 1,
-    nombre: "Hidin' from the butcher",
-    imagen: "img/portada_hiddn_bajares.jpg",
-    precio: 15,
-  },
-  {
-    id: 2,
-    nombre: "Keepin' it warm",
-    imagen: "img/PORTADA_SOL8_bajares.jpg",
-    precio: 15,
-  },
-];
+  const discos = [
+    {
+      id: 1,
+      nombre: "Hidin' from the butcher",
+      imagen: "img/hiddn.jpg",
+      precio: 15,
+    },
+    {
+      id: 2,
+      nombre: "Keepin' it warm",
+      imagen: "img/keepin.jpg",
+      precio: 15,
+    },
+  ];
 
-
-
-//Rellenamos la web con los discos disponibles
-discos.forEach((disco, index) => {
-  $("#discos div").first()
-    .append(`<div class='col-12 col-md-5 mb-3'><div class='card  h-100'>
+  //Rellenamos la web con los discos disponibles
+  discos.forEach((disco, index) => {
+    $("#discos div").first()
+      .append(`<div class='col-12 col-md-5 mb-3'><div class='card  h-100'>
     <img src='${disco.imagen}' class='card-img-top' alt='caratula'>
     <div class='card-body '>
       <h5 class='card-title'>${disco.nombre}</h5>
@@ -153,111 +148,112 @@ discos.forEach((disco, index) => {
       <button class='btn btn-primary btn-add'>Añadir al carrito</button>
     </div>
    </div></div>`);
-});
+  });
 
-//Accedemos al botón de añadir al carrito y extraemos la información del producto
-$("#cards button").click(function (e) {
-
-  console.log(e.target);
+  //Accedemos al botón de añadir al carrito y extraemos la información del producto
+  $("#cards button").click(function (e) {
+    console.log(e.target);
     let producto = $(this).closest("div");
 
     const info = {
-      cantidad: parseInt($(producto)
-        .closest("div")
-        .children("div")
-        .eq(0)
-        .children("p")
-        .eq(1)
-        .children("input")
-        .val()),
+      cantidad: parseInt(
+        $(producto)
+          .closest("div")
+          .children("div")
+          .eq(0)
+          .children("p")
+          .eq(1)
+          .children("input")
+          .val()
+      ),
       nombre: $(producto).closest("div").children("h5").eq(0).text(),
-      precio: parseFloat($(producto)
+      precio: parseFloat(
+        $(producto)
+          .closest("div")
+          .children("div")
+          .eq(0)
+          .children("p")
+          .eq(0)
+          .children("span")
+          .text()
+      ),
+    };
+    if (info.cantidad > 0) {
+      $("#carrito-discos").prepend(
+        "<div class='col-10 row border rounded-2 mb-2 mx-0'><p class='col-9 py-2 m-0'>" +
+          info.nombre +
+          "</p><p class='col-3 py-2 m-0'>" +
+          info.cantidad +
+          "</p></div><div class='col-2'><p class='m-0 py-2'><i class='fa-solid fa-xmark fs-4'></i></p></div>"
+      );
+
+      totalDiscos += info.precio * info.cantidad;
+
+      $("#total-discos").text(totalDiscos);
+    }
+
+    /*Limpiamos el input con la cantidad*/
+    $(producto)
       .closest("div")
       .children("div")
       .eq(0)
       .children("p")
-      .eq(0).children("span").text())
-    };
-    if(info.cantidad > 0){
-    $("#carrito-discos").prepend(
-      "<div class='col-10 row border rounded-2 mb-2 mx-0'><p class='col-9 py-2 m-0'>" +
-        info.nombre +
-        "</p><p class='col-3 py-2 m-0'>" +
-        info.cantidad +
-        "</p></div><div class='col-2'><p class='m-0 py-2'><i class='fa-solid fa-xmark fs-4'></i></p></div>");
-    
+      .eq(1)
+      .children("input")
+      .val("");
 
-   
-    totalDiscos += info.precio * info.cantidad;
-    
- 
-    $("#total-discos").text(totalDiscos);
-    }
-    
-    /*Limpiamos el input con la cantidad*/
-    $(producto)
-        .closest("div")
-        .children("div")
+    /*Manejadores para el botón close*/
+
+    $("body").on("mouseenter", ".fa-xmark", function (e) {
+      $(e.target).addClass("text-secondary");
+    });
+    $("body").on("mouseleave", ".fa-xmark", function (e) {
+      $(e.target).removeClass("text-secondary");
+    });
+
+    $("#carrito-discos i").click(function (e) {
+      let nombre = $(e.target)
+        .parentsUntil("#carrito-discos")
+        .prev()
+        .children()
         .eq(0)
-        .children("p")
-        .eq(1)
-        .children("input")
-        .val("");
-    
-  
-  
-   /*Manejadores para el botón close*/
+        .text();
+      let cantidad = parseInt(
+        $(e.target)
+          .parentsUntil("#carrito-discos")
+          .prev()
+          .children()
+          .eq(1)
+          .text()
+      );
 
-   $("body").on("mouseenter", ".fa-xmark", function(e){
-    $(e.target).addClass("text-secondary");
+      $(e.target).parentsUntil("#carrito-discos").hide();
+      $(e.target).parentsUntil("#carrito-discos").prev().hide();
+      let precioTotal = parseInt($("span#total-discos").text());
+
+      if (nombre == info.nombre)
+        precioTotal = precioTotal - info.precio * cantidad;
+
+      $("#total-discos").text(precioTotal);
+      totalDiscos = precioTotal;
+    });
+    $("#comprar-discos").click(function (e) {
+      if ($("#carrito-discos").children().is("div")) {
+        console.log("compra");
+        $("#carrito-discos").empty();
+        $("#total-discos").empty();
+        $("#carrito-discos").append(
+          "<p><h4 class='fw-bold border border-2 rounded-2 border-danger text-center p-2'>Compra realizada con éxito</h4></p>"
+        );
+      } else {
+        console.log("no compra");
+      }
+    });
+
+    $("#btn-vaciar-discos").click(function (e) {
+      console.log(e);
+      $("#carrito-discos").remove("div");
+      $("#total-discos").empty();
+    });
   });
-  $("body").on("mouseleave", ".fa-xmark", function(e){
-    $(e.target).removeClass("text-secondary");
-  });
-
-  $("#carrito-discos i").click(function (e){
-
-    
-    let nombre = $(e.target)
-    .parentsUntil("#carrito-discos")
-    .prev()
-    .children()
-    .eq(0)
-    .text();
-  let cantidad = parseInt(
-    $(e.target).parentsUntil("#carrito-discos").prev().children().eq(1).text()
-  );
-
-  $(e.target).parentsUntil("#carrito-discos").hide();
-  $(e.target).parentsUntil("#carrito-discos").prev().hide();
-  let precioTotal = parseInt($("span#total-discos").text());
-
-  if(nombre == info.nombre)
-  precioTotal = precioTotal - info.precio * cantidad;
-
-
-  $("#total-discos").text(precioTotal);
-  totalDiscos = precioTotal;
-  });
-  $("#comprar-discos").click(function (e) {
-  if ($("#carrito-discos").children().is("div")) {
-    console.log("compra");
-    $("#carrito-discos").empty();
-    $("#total-discos").empty();
-    $("#carrito-discos").append(
-      "<p><h4 class='fw-bold border border-2 rounded-2 border-danger text-center p-2'>Compra realizada con éxito</h4></p>"
-    );
-  } else {
-    console.log("no compra");
-  }
 });
-
-$("#btn-vaciar-discos").click(function (e) {
-  console.log(e);
-  $("#carrito-discos").remove("div");
-  $("#total-discos").empty();
-});
-});
-
-   
-  });
