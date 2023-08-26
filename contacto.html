@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historia</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.png">
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!--FUENTES-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&display=swap" rel="stylesheet" />
+  <script src="js/jquery-3.6.4.js"></script>
+</head>
+
+<body>
+  <!-- CABECERA PRINCIPAL -->
+  <header>
+    <div class="p-3 mb-0 text-center bg-primary">
+      <img src="img/logoTEB_B_w.png" class="img-fluid"  alt="logoBuffalo" title="TheElectricBuffalo"/>
+    </div>
+    <!-- NAVEGACION PRINCIPAL -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-primary bg-primary">
+      <div class="container-fluid">
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
+          <ul class="navbar-nav mb-2 mb-md-0 fs-6 p-1 p-md-0 ">
+            <li class="nav-item pe-5">
+              <a href="index.html" class="nav-link active link-info" aria-current="page"> <i
+                  class="fa-solid fa-house pe-3"></i>Inicio</a>
+            </li>
+            <li class="nav-item pe-5">
+              <a href="historia.html" class="link-info nav-link">
+                <i class="fa-solid fa-book-open pe-3"></i>Historia</a>
+            </li>
+            <li class="nav-item pe-5">
+              <a href="discografia.html" class="link-info nav-link"> <i
+                  class="fa-solid fa-compact-disc pe-3"></i>Discografía</a>
+            </li>
+            <li class="nav-item pe-5">
+              <a href="carrito.html" class="link-info nav-link"> 
+                <i class="fa-solid fa-cart-shopping pe-3"></i>Tienda</a>
+            </li>
+            <li class="nav-item pe-5">
+              <a href="contacto.html" class="link-info nav-link">
+                <i class="fa-solid fa-paper-plane pe-3"></i>Contacto</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" id="buscar">
+            <button class="btn btn-outline-info" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- FIN DE LA NAVEGACION PRINCIPAL -->
+  </header>
+  <!-- FOMULARIO DE CONTACTO -->
+  <main class="container mx-auto w-75 d-flex justify-content-center align-content-center m-5">
+    <form class="fondo-secondary rounded-2 text-info"  >
+      <fieldset class="p-3">
+        <legend>Contacta con nosotros</legend>
+        <div class="row">
+          <div class="col-12 col-md-5">
+            <label for="nombre" class="form-label fs-5">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre"  required/>
+           
+          </div>
+          
+          <div class="col-12 col-md-7">
+            <label for="apellidos" class="form-label fs-5">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" required/>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="email" class="form-label fs-5">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email" required />
+        </div>
+        <div class="mt-3">
+          <label for="direccion" class="form-label fs-5">Dirección</label>
+          <input type="text" class="form-control" id="direccion" placeholder="Dirección" />
+        </div>
+        <div class="row">
+          <div class="mt-3 col-12 col-md-6">
+            <label for="tfno" class="form-label fs-5">Teléfono</label>
+            <input type="tel" class="form-control" id="tfno" placeholder="Teléfono" required>
+          </div>
+          <div class="col-12 col-md-6 mt-3">
+            <label for="fechaN" class="form-label fs-5">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="fechaN">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 mt-3">
+            <label for="localidad" class="form-label fs-5">Localidad</label>
+            <input type="text" class="form-control" id="localidad" placeholder="Localidad">
+          </div>
+          <div class="col-12 col-md-6 mt-3">
+            <label for="provincia" class="form-label fs-5">Provincia</label>
+            <input type="text" class="form-control" id="provincia" placeholder="Provincia">
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="mensaje" class="form-label d-block fs-5">Deja tu mensaje</label>
+          <textarea name="mensaje" id="mensaje" rows="3" class="w-100 border-0 rounded-2"></textarea>
+        </div>
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" value="Politica_privacidad" id="privacidad" >
+          <label class="form-check-label" for="privacidad">
+            Acepta los términos y condiciones
+          </label>
+        </div>
+      </fieldset>
+      <div class="m-3 p-2 d-flex justify-content-center">
+        <input class="btn btn-primary text-secondary-emphasis mx-auto w-75" type="submit" id="enviar" value="Enviar">
+      </div>
+    </form>
+   
+
+  </main>
+  <div class="row ms-0 pe-4">
+    <div class="col text-end">
+      <a href="contacto.html" class="text-decoration-none h6">Volver al inicio</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary p-3">
+    <div class="row justify-content-sm-center justify-content-md-around   align-items-center">
+      <div class="col-12 col-md-3 mb-3">
+        <p class="text-info h6 mb-0">Pilar Fernandez Nieto</p>
+        <p class="text-info h6 mb-0">Proyecto Desarrollo Interfaces Web</p>
+        <p class="text-info h6 mb-0">CONTACTO:</p>
+        <p class="text-info h6 mb-0">C/Francisco Eiriz, Nº 20</p>
+        <p class="text-info h6 mb-0 fst-italic">Tfno. 626340144</p>
+      </div>
+      <div class="col-12 col-md-3 text-center">
+        <a href="https://www.facebook.com/TheElectricBuffalo" class="link-info fs-3 me-4" target="_blank" title="icono_facebook"><i class="fa-brands fa-square-facebook" alt="icono_facebook"></i></a>
+        <a href="https://www.instagram.com/theelectricbuffalo/" class="link-info fs-3 me-4" target="_blank" title="icono_instagram"><i class="fa-brands fa-square-instagram" alt="icono_instagram"></i></a>
+        <a href="https://www.youtube.com/@theelectricbuffalo666" class="link-info fs-3 me-4" target="_blank" title="icono_youtube"><i class="fa-brands fa-youtube" alt="icono_youtube"></i></a>
+      </div>
+      <div class="col-12 col-md-3 fs-6 mb-3 text-center ">
+        <a href="mapa.html" class="link-info text-decoration-none">Mapa del sitio</a>
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+              <img class="cssvalido" 
+                  src="http://jigsaw.w3.org/css-validator/images/vcss"
+                  alt="¡CSS Válido!" />
+          </a>
+      </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="js/validaFormulario.js"></script>
+</body>
+
+</html>
